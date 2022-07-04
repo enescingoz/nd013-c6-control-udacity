@@ -61,9 +61,9 @@ using json = nlohmann::json;
 
 
 // define pid parameters
-double tau_p_steer = 0.45;
+double tau_p_steer = 0.53;
 double tau_i_steer = 0.001;
-double tau_d_steer = 0.0187;
+double tau_d_steer = 0.32;
 double steer_min = -1.2;
 double steer_max = 1.2;
 
@@ -341,7 +341,7 @@ int main ()
            pid_steer.UpdateError(error_steer);
            steer_output = pid_steer.TotalError();
           
-          // prevent to inf error
+          // prevent from inf or none type error
           if(steer_output < -1.2)
             steer_output = -1.2;
           
@@ -364,8 +364,8 @@ int main ()
           /**
           * TODO (step 2): uncomment these lines
           **/
-           // Update the delta time with the previous command
-           pid_throttle.UpdateDeltaTime(new_delta_time);
+          // Update the delta time with the previous command
+          pid_throttle.UpdateDeltaTime(new_delta_time);
 
           // Compute error of speed
           double error_throttle;
@@ -389,7 +389,7 @@ int main ()
            pid_throttle.UpdateError(error_throttle);
            double throttle = pid_throttle.TotalError();
           
-          // prevent to inf error
+          // prevent from inf or none type error
           if(throttle < -1)
             throttle = -1;
           
