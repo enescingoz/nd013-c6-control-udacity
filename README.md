@@ -3,7 +3,7 @@
 # Proportional-Integral-Derivative (PID)
 
 In this project, designed a PID controller to perform vehicle trajectory tracking. Tested on CARLA simulator.
-![carla_initial](../project/pid_controller/screenshot/carla_initial.PNG)
+![carla_initial](../master/project/pid_controller/screenshot/carla_initial.PNG)
 
 
 
