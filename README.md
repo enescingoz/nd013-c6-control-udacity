@@ -6,13 +6,34 @@ In this project, designed a PID controller to perform vehicle trajectory trackin
 ![carla_initial](../master/project/pid_controller/screenshot/carla_initial.PNG)
 
 
+# PID Output Plots
+![test1](../master/project/pid_controller/screenshot/test1.png)
+![test2](../master/project/pid_controller/screenshot/test2.png)
+![test3](../master/project/pid_controller/screenshot/test3.png)
+![test4](../master/project/pid_controller/screenshot/test4.png)
 
-Answer the following questions:
-- Add the plots to your report and explain them (describe what you see)
+
+# Answer the following questions:
+
 - What is the effect of the PID according to the plots, how each part of the PID affects the control command?
+```
+- If P coefficient is too high, it will cause oscillation. Conversely, if P coefficient is not high enough, it will not reach to target value.
+- If I coefficient is too high, it will cause oscillation and will not reach to targeted value. If it is too low, it will take too much time to reach targeted value.
+- If D coefficient is too low, it will cause immediate reaction and then oscillation. If this coefficient is too high, it will take too much time to reach targeted value. 
+```
+
 - How would you design a way to automatically tune the PID parameters?
+```
+
+- As mentioned in the course lectures, Twiddle algorithm can be used. 
+```
+
 - PID controller is a model free controller, i.e. it does not use a model of the car. Could you explain the pros and cons of this type of controller?
-- (Optional) What would you do to improve the PID controller?
+```
+- When inputs are increased for an algorithm, we will need too much coding time and calculations. For this reason, PID controller is very useful when we have only target value and current value as input. Also, PID contoller is really easy to implement.
+
+- On the other hand, because we don't have mathematical model of the car, we have to tune PID parameters on every change on the car engine or steering system. Moreover, we may cannot obtain robust outputs with PID controller unless we tuned properly.
+```
 
 
 ### Installation
