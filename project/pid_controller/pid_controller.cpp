@@ -55,13 +55,6 @@ double PID::TotalError() {
   
   	control = (tau_p_ * cte_) - (tau_d_ * cte_diff_) - (tau_i_ * cte_int_);
   
-  	//control = ((control / 100.0) * 2) - 1;
-  
-  	//if(control < output_lim_mini_)
-    //  control = output_lim_mini_;
-  	
-  	//if(control > output_lim_maxi_)
-    //  control = output_lim_maxi_;
   
     return control;
 }

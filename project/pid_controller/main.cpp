@@ -327,12 +327,12 @@ int main ()
           // calculate angle between next destination on path planner
           // "angle_between_points" function taken from "path_planner" function
           double heading_target_point = angle_between_points(x_points[xp_size-2], 
-                     y_points[yp_size-2], 
-                     x_points[xp_size-1], 
-                     y_points[yp_size-1]);
+                                                             y_points[yp_size-2], 
+                                                             x_points[xp_size-1], 
+                                                             y_points[yp_size-1]);
           
           // our steering error will be (heading to target point on path - our current heading)
-           error_steer = heading_target_point - yaw;
+          error_steer = heading_target_point - yaw;
 
           /**
           * TODO (step 3): uncomment these lines
@@ -378,8 +378,6 @@ int main ()
           int vp_size = v_points.size();
           error_throttle = v_points.back() - velocity;
           
-
-
 
           double throttle_output;
           double brake_output;
