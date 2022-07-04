@@ -19,9 +19,9 @@ Answer the following questions:
 
 Run the following commands to install the starter code in the Udacity Workspace:
 
-Clone the <a href="https://github.com/udacity/nd013-c6-control-starter/tree/master" target="_blank">repository</a>:
+Clone the <a href="[https://github.com/enescingoz/nd013-c6-control-udacity)" target="_blank">repository</a>:
 
-`git clone https://github.com/udacity/nd013-c6-control-starter.git`
+`git clone https://github.com/enescingoz/nd013-c6-control-udacity`
 
 ## Run Carla Simulator
 
