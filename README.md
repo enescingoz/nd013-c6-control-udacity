@@ -7,12 +7,38 @@ In this project, designed a PID controller to perform vehicle trajectory trackin
 
 
 # PID Output Plots
+
+### Test 1
+
+PID coefficients set to random values for initial state. After plotting the result, parameters are tuned for test2.
+
 ![test1](../master/project/pid_controller/screenshot/test1.png)
+-------------
+
+### Test 2
+
+In steering plots, it's clear to see algorithm is oscillating. Also on throttle plots, it looks like P, I and D coefficients are too high and causing oscillation.
+
 ![test2](../master/project/pid_controller/screenshot/test2.png)
+-------------
+
+### Test 3
+
+According to test 2 results, P, I and D coefficients of throttle reduced and oscillation problem solved partially.
+
 ![test3](../master/project/pid_controller/screenshot/test3.png)
+-------------
+
+### Test 4
+
+While keeping P coefficient still, reduced I coefficient and increased D coefficient of steering parameters. Also I and D coefficients are decreased for throttle parameters while the P coefficient is kept constant. 
+
+Throttle output is really smooth and not oscillating on Carla simulator. But, steering coefficients should be tuned again.
+
 ![test4](../master/project/pid_controller/screenshot/test4.png)
 
 
+-------------
 # Answer the following questions:
 
 - What is the effect of the PID according to the plots, how each part of the PID affects the control command?
@@ -35,7 +61,7 @@ In this project, designed a PID controller to perform vehicle trajectory trackin
 - On the other hand, because we don't have mathematical model of the car, we have to tune PID parameters on every change on the car engine or steering system. Moreover, we may cannot obtain robust outputs with PID controller unless we tuned properly.
 ```
 
-
+-------------
 ### Installation
 
 Run the following commands to install the starter code in the Udacity Workspace:
