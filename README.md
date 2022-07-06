@@ -8,32 +8,53 @@ In this project, designed a PID controller to perform vehicle trajectory trackin
 
 # PID Output Plots
 
+Simulation environment is consists of 3 cars placed on sides of a road. This project's mission is make the ego car move forward while avoiding these cars. To do this, desired path and velocities are given by path planner. Using these desired target points and velocities, designed a PID controller to move along this path smoothly while avoiding crashes from cars or other objects. After implemented a PID controller in "main.cpp", "pid_controller.hpp" and "pid_controller.cpp", to test this controller initial values are given randomly to pid coefficients for test 1.
+
+Each test has 2 plots; throttle outputs and steering outputs. After test 1, by examining the plots pid coefficients are tuned.
+
 ### Test 1
 
-PID coefficients set to random values for initial state. After plotting the result, parameters are tuned for test2.
+PID coefficients are set to random values for initial state. As shown in the plots, throttle errors are too high than expected. Reason of this, when car speed is increased, avoiding crashes is getting harder. Also, it is getting harder to compute the angle between next target point. If car speed is too high, algorithm can not calculate angle between target point and ego car. Therefore, the ego car is trying to turn backside immediately and crashes.
+
+After plotting the errors, pid coefficients are tuned for test 2.
 
 ![test1](../master/project/pid_controller/screenshot/test1.png)
 -------------
 
 ### Test 2
 
-In steering plots, it's clear to see algorithm is oscillating. Also on throttle plots, it looks like P, I and D coefficients are too high and causing oscillation.
+After tuning pid parameters, outputs are plotted as result of test 2. It is clear to see that, throttle error is less than compared to test 1. As a result, we can say that car speed is higher than test 1. As another inference, we can see that throttle output is rise too fast at the beginning. This means, P coefficient is too high and it should be reduced.
+
+Also, throttle outputs are oscillated too much. This might have 3 different causation:
+```
+- P coefficient is too high.
+- I coefficient is too high.
+- D coefficient is too low.
+```
+
+When steering outputs are examined, we can say that the ego car is steering more sharper but oscillating too much.
 
 ![test2](../master/project/pid_controller/screenshot/test2.png)
 -------------
 
 ### Test 3
 
-According to test 2 results, P, I and D coefficients of throttle reduced and oscillation problem solved partially.
+After tuned P coefficient for throttle, the outputs are started to rise smoothly and oscillating less. Also D coefficient is increased for more smooth throttle output. By decreasing I coefficient, throttle outputs became more stable compared to test 1 and test 2.
+
+For steering outputs, P coefficient is increased, D and I coefficients are decreased. As a result of this, steering outputs are started to react a bit late but became more sharper when needed.
 
 ![test3](../master/project/pid_controller/screenshot/test3.png)
 -------------
 
 ### Test 4
 
-While keeping P coefficient still, reduced I coefficient and increased D coefficient of steering parameters. Also I and D coefficients are decreased for throttle parameters while the P coefficient is kept constant. 
+For test 4 while keeping P coefficient constant, reduced I and D coefficient of steering parameters. By doing this, as seen on the plots, steering outputs are reacted a bit late to turn, but the ego car moved more smooth compared to other tests. 
 
-Throttle output is really smooth and not oscillating on Carla simulator. But, steering coefficients should be tuned again.
+Also, in all tests steering errors are bigger than steering outputs. Because P coefficient is not given too much to move ego car more smoothly. If P coefficient is increased, steering error will be less than now but car will start to turn sharper.
+
+
+For throttle outputs, I and D coefficients are decreased to prevent from oscillating. But it is still able to react sharp enough when needed, as expected.
+
 
 ![test4](../master/project/pid_controller/screenshot/test4.png)
 
