@@ -61,15 +61,15 @@ using json = nlohmann::json;
 
 
 // define pid parameters
-double tau_p_steer = 0.53;
+double tau_p_steer = 0.52;
 double tau_i_steer = 0.001;
-double tau_d_steer = 0.32;
+double tau_d_steer = 0.50;
 double steer_min = -1.2;
 double steer_max = 1.2;
 
 double tau_p_thr = 0.16;
-double tau_i_thr = 0.001;
-double tau_d_thr = 0.06;
+double tau_i_thr = 0.0007;
+double tau_d_thr = 0.05;
 double throttle_min = -1.0;
 double throttle_max = 1.0;
 
@@ -327,12 +327,12 @@ int main ()
           // calculate angle between next destination on path planner
           // "angle_between_points" function taken from "path_planner" function
           double heading_target_point = angle_between_points(x_points[xp_size-2], 
-                                                             y_points[yp_size-2], 
-                                                             x_points[xp_size-1], 
-                                                             y_points[yp_size-1]);
+                     y_points[yp_size-2], 
+                     x_points[xp_size-1], 
+                     y_points[yp_size-1]);
           
           // our steering error will be (heading to target point on path - our current heading)
-          error_steer = heading_target_point - yaw;
+           error_steer = heading_target_point - yaw;
 
           /**
           * TODO (step 3): uncomment these lines
@@ -341,12 +341,12 @@ int main ()
            pid_steer.UpdateError(error_steer);
            steer_output = pid_steer.TotalError();
           
-          // prevent from inf or none type error
-          if(steer_output < -1.2)
-            steer_output = -1.2;
+          // prevent to inf error
+          //if(steer_output < -1.2)
+            //steer_output = -1.2;
           
-          if(steer_output > 1.2)
-            steer_output = 1.2;
+          //if(steer_output > 1.2)
+            //steer_output = 1.2;
 
            // Save data
            file_steer.seekg(std::ios::beg);
@@ -364,8 +364,8 @@ int main ()
           /**
           * TODO (step 2): uncomment these lines
           **/
-          // Update the delta time with the previous command
-          pid_throttle.UpdateDeltaTime(new_delta_time);
+           // Update the delta time with the previous command
+           pid_throttle.UpdateDeltaTime(new_delta_time);
 
           // Compute error of speed
           double error_throttle;
@@ -379,6 +379,8 @@ int main ()
           error_throttle = v_points.back() - velocity;
           
 
+
+
           double throttle_output;
           double brake_output;
 
@@ -389,12 +391,12 @@ int main ()
            pid_throttle.UpdateError(error_throttle);
            double throttle = pid_throttle.TotalError();
           
-          // prevent from inf or none type error
-          if(throttle < -1)
-            throttle = -1;
+          // prevent to inf error
+          //if(throttle < -1)
+            //throttle = -1;
           
-          if(throttle > 1)
-            throttle = 1;
+          //if(throttle > 1)
+            //throttle = 1;
             
 
            // Adapt the negative throttle to break
